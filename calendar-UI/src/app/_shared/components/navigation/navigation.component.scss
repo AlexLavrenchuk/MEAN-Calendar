@@ -1,0 +1,28 @@
+@import "src/assets/scss/vars";
+
+.nav {
+  text-transform: uppercase;
+  color: $secondColor;
+  font-weight: $boldFont;
+}
+.nav-list {
+ display: flex;
+ align-items: center;
+}
+.nav-item + .nav-item {
+  margin: 0 0 0 1rem;
+}
+.nav-item {
+  
+  a {
+    transition: color .2s;
+    &:hover,
+    &:focus {
+      color: blue;
+    }
+  }
+  
+  .active {
+    text-decoration: underline;
+  }
+}

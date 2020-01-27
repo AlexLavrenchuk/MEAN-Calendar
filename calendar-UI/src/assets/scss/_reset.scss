@@ -1,0 +1,78 @@
+*, *::after, *::before {
+  box-sizing: border-box;
+}
+
+html, body { 
+  height: 100%; 
+}
+
+body {
+	color: $primaryFontColor;
+	background-color: $primaryBackgroundColor;
+	font: 400 16px/1.2 $primaryFontFamily;
+    
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: none;
+	-webkit-overflow-scrolling: touch;
+}
+
+h1, h2, h3, h4, h5, h6, button {
+	font-family: $primaryFontFamily;
+}
+
+html, body, ul, p,
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+	max-width: 100%;
+  height: auto;  
+	vertical-align:top;
+}
+
+ul {
+  list-style: none;
+}
+
+a,
+a:hover,
+a:active,
+a:focus {
+	text-decoration: none;
+	color: inherit;
+	outline:none;
+}
+
+input[type="text"],
+input[type="file"],
+input[type="password"],
+input[type="submit"],
+input[type="email"],
+input[type="tel"],
+input[type="url"],
+textarea {
+	-webkit-border-radius: 0;
+	-webkit-appearance: none;
+	border-radius: 0;
+}
+input[type="email"] {
+	box-shadow: none;
+	-webkit-box-shadow: none;
+}
+input[type="image"] {
+	padding: 0; border: none;
+}
+input[type="submit"]::-moz-focus-inner,
+input[type="button"]::-moz-focus-inner,
+button::-moz-focus-inner {
+	border:0;
+	padding:0;
+}
+input[type="submit"]:focus,
+input[type="button"]:focus,
+button, button:focus {
+	outline: none;
+	cursor: pointer;
+}

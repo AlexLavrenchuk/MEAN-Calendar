@@ -1,0 +1,14 @@
+.wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: filter .2s;
+}
+.wrapper.filter {
+  filter: blur(.2rem);
+}
+.main {
+  flex-grow: 1;
+  padding: 2rem 3rem;
+}

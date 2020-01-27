@@ -1,0 +1,9 @@
+<app-modal></app-modal>
+<app-alert></app-alert>
+<div class="wrapper"  [ngClass]="{'filter': filter}">
+  <app-header></app-header>
+  <main class="main">
+    <router-outlet></router-outlet>
+  </main>
+  <app-footer></app-footer>
+</div>

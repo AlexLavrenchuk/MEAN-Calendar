@@ -1,0 +1,26 @@
+<header class="header">
+
+  <section class="header-section">
+    <div class="logo">
+      <a routerLink="/">
+        Logo
+      </a>
+    </div>
+  </section>
+  
+  <app-navigation></app-navigation>
+
+  <section class="header-section header-menu">
+    <div *ngIf="!currentUser" class="action">
+      <a routerLink="/auth" class="button button-link">Login</a>
+      <a routerLink="/auth/register" class="button button-link">Register</a>
+    </div>
+    <div *ngIf="currentUser" class="action" >
+      <a routerLink="/auth" class="button button-link">Logout</a>
+    </div>
+    <div *ngIf="currentUser" class="user-info">
+      <span class="user-info-name">{{currentUser.userName}}</span>
+    </div>
+  </section>
+
+</header>

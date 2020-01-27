@@ -1,0 +1,76 @@
+<section class="modal" *ngIf="view" (click)="areaOutside($event)">
+  <div class="modal-window">
+    <button class="button-close" type="button" (click)="close()"></button>
+    <form *ngIf="!objEvent && !exportJson" [formGroup]="addFormEvent" (ngSubmit)="addNewEvent()" class="form-container">
+      <header class="header-modal">
+        <h2 class="modal-title">Add event</h2>
+      </header>
+      <main class="main-modal">
+        <p>
+          <mat-form-field class="width">
+            <input matInput type="text" placeholder="Title event" formControlName="title">
+            <mat-error *ngIf="addFormEvent.controls.title.errors && addFormEvent.controls.title.errors.required">
+              Title is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </p>
+        <p class=time-add>
+          <mat-form-field class="time-input">
+            <input matInput type="time" placeholder="start" formControlName="start">
+            <mat-error *ngIf="addFormEvent.controls.start.errors && addFormEvent.controls.start.errors.required">
+              Start time is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="time-input">
+            <input matInput type="time" placeholder="end" formControlName="end">
+            <mat-error *ngIf="addFormEvent.controls.end.errors && addFormEvent.controls.end.errors.required">
+              End time is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="addFormEvent.controls.end.errors && addFormEvent.controls.end.errors.lessThenStart">
+              Less than a <strong>start</strong> or <strong>equals start</strong>
+            </mat-error>
+          </mat-form-field>
+        </p>
+      </main>
+      <footer class="footer-modal">
+        <div class="modal-action">
+          <button mat-raised-button class="button button_second" type="button" (click)="confirmation()" [disabled]="addFormEvent.invalid">Save</button>
+          <button mat-raised-button class="button" type="button"  (click)="close()">Cancel</button>
+        </div>
+      </footer>
+    </form>
+
+    <div *ngIf="objEvent && !exportJson">
+      <header class="header-modal">
+        <h2 class="modal-title">{{objEvent.title}}</h2>
+      </header>
+      <main class="main-modal">
+        <p>start: {{objEvent.start}}</p>
+        <p>duration: {{objEvent.duration}}</p>
+      </main>
+      <footer class="footer-modal">
+        <div class="modal-action">
+          <button mat-raised-button class="button button_warning" type="button" (click)="delete()">Delete</button>
+          <button mat-raised-button class="button" type="button"  (click)="close()">Cancel</button>
+        </div>
+      </footer>
+    </div>
+
+    <div *ngIf="!objEvent && exportJson">
+      <header class="header-modal">
+        <p>// 'start' & 'duration' are measured in minutes</p>
+        <p>// 'start' 0 is 8:00a</p>
+      </header>
+      <main class="main-modal">
+        <pre>{{exportJson}}</pre>
+      </main>
+      <footer class="footer-modal">
+        <div class="modal-action">
+          <button mat-raised-button class="button button_second" type="button" (click)="saveJson()">Save</button>
+          <button mat-raised-button class="button" type="button"  (click)="close()">Cancel</button>
+        </div>
+      </footer>
+    </div>
+
+  </div>
+</section>

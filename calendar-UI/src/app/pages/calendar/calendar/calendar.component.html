@@ -1,0 +1,16 @@
+<h2 class="title">calendar</h2>
+
+<p class="form-action">
+  <button *ngIf="!loader" mat-raised-button class="button button_second" type="button" (click)="openFormToAddEvent()">Add event</button>
+  <button *ngIf="!loader" mat-raised-button class="button button_second" type="button" (click)="exportJson()">Export</button>
+  <app-loader class="loader" *ngIf="loader"></app-loader>
+</p>
+
+<div class="board">
+  <ul class="time-list">
+    <li class="container-to-event" #eventsContainer></li>
+    <li class="time-space" [ngClass]='{int: !(i % 2), half: !!(i % 2) }' *ngFor="let set of timeSet; index as i; trackBy: trackByFn">
+      <span class="time" [ngClass]='{int: !(i % 2), half: !!(i % 2) }'>{{set.time}}</span>
+    </li>
+  </ul>
+</div>

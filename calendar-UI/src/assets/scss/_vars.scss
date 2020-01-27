@@ -1,0 +1,45 @@
+//color
+$white:           #ffffff;
+$black:           #000000;
+$blue:            #0000ff;
+$yellow:          #ffff00;
+$green:           #00ff00;
+$red:             #ff0000;
+$liteRed:         #ff0036;
+$darkGreen:       #008000;
+
+//outline color
+$outlineColor:    #4D90FE;
+
+//font-weight
+$thinFont:        100;
+$extraLightFont:  200;
+$lightFont:       300;
+$regularFont:     400;
+$mediumFont:      500;
+$semiBoldFont:    600;
+$boldFont:        700;
+$extraBoldFont:   800;
+$blackFont:       900;
+
+/////////////////
+/////setting/////
+/////////////////
+
+//required to reset
+$primaryFontFamily: 'Open Sans', sans-serif;
+$primaryFontColor: $black;
+$primaryBackgroundColor: $white;
+
+$primaryColor: #E2ECF5;
+$secondColor: #6E9ECF;
+
+//alert
+$alertBgColor: $white;
+$alertShadow: 2px 2px 15px 0 rgba(0,0,0,.3);;
+//alert success
+$alertColorSuccess: $darkGreen;
+$alertShadowSuccess: 2px 2px 15px 0  $darkGreen;
+//alert error
+$alertColorDanger: $liteRed;
+$alertShadowDanger: 2px 2px 15px 0 $liteRed;

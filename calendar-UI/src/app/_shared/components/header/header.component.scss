@@ -1,0 +1,34 @@
+@import 'src/assets/scss/vars';
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 3rem;
+  background-color: $primaryColor;
+  border-bottom: .05rem solid $secondColor;
+
+  .logo {
+    max-width: 3rem;
+    a {
+      display: block;
+    }
+  }
+}
+
+.header-menu {
+  display: flex;
+  align-items: center;
+
+  .action {
+    font-size: 14px;
+  }
+
+  .user-info {
+    margin-left: 15px;
+
+    &-name {
+      font-size: 20px;
+    }
+  }
+}

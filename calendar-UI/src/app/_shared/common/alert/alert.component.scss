@@ -1,0 +1,23 @@
+@import "src/assets/scss/vars";
+@import "src/assets/scss/animation";
+
+.alert {
+  animation: view .5s ease;
+  position: fixed;
+  z-index: 2000;
+  top: 10vh;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1rem;
+  background-color: $alertBgColor;
+  box-shadow: $alertShadow;
+  border-radius: 0.25rem;
+}
+.alert-success {
+  color: $alertColorSuccess;
+  box-shadow: $alertShadowSuccess;
+}
+.alert-danger {
+  color: $alertColorDanger;
+  box-shadow: $alertShadowDanger;
+}

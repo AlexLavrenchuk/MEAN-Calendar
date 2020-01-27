@@ -1,0 +1,70 @@
+.button:not(:last-child) {
+  margin-right: 10px;
+}
+.button {
+  &_primary {
+    background: $primaryColor;
+  }
+  &_second {
+    background: $secondColor;
+    color: $white;
+  }
+  &_warning {
+    background: $liteRed;
+    color: $white;
+  }
+}
+
+.button-link {
+  color: $secondColor;
+  background-color: $primaryColor;
+  border: 1px solid $secondColor;
+  border-radius: 3px;
+  padding: 5px 10px;
+  transition: color .2s, background-color .2s;
+  &:hover {
+    color: $primaryColor;
+    background-color: $secondColor;
+  }
+}
+
+.button-close {
+  @include button-clear;
+  display: block;
+  width: .8rem;
+  height: .8rem;
+  position: absolute;
+  top: .8rem;
+  right: .8rem;
+  &::after,
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+    width: 120%;
+    height: 20%;
+    background-color: $black;
+    border-radius: .05rem;
+    transition: box-shadow .2s;
+  }
+  &::after {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+  &::before {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+}
+.button-close:hover {
+  &::after,
+  &::before {
+    box-shadow: 0 0 .1rem 0 $black;
+  }
+}
+.button-close_small {
+  width: .4rem;
+  height: .4rem;
+  top: .4rem;
+  right: .4rem;
+}

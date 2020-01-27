@@ -1,0 +1,39 @@
+@import "src/assets/scss/vars";
+@import "src/assets/scss/mixins";
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,.3);
+  z-index: 1;
+  padding: 0 2rem;
+}
+.modal-window {
+  animation: view-2 .5s ease;
+  position: relative;
+  top: 10vh;
+  background-color: $white;
+  padding: 1rem;
+  margin: 0 auto;
+  max-width: 768px;
+}
+.header-modal,
+.main-modal,
+.footer-modal {
+  padding: 1rem;
+}
+.width {
+  width: 100%;
+}
+.time {
+
+  &-input {
+    width: 48%;
+    &:not(:last-child) {
+      margin-right: 2%;
+    }
+  }
+}

@@ -1,0 +1,50 @@
+<app-alert></app-alert>
+<div class="form">
+  <form class="form-container" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <h2 class="form-title">Register</h2>
+    <p>
+      <mat-form-field class="full-width">
+        <input matInput type="text" placeholder="User name" formControlName="userName">
+        <mat-error *ngIf="registerForm.controls.userName.errors && registerForm.controls.userName.errors.required">
+          User name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field class="full-width">
+        <input matInput [type]="hide ? 'password' : 'text'" placeholder="Password" formControlName="password">
+        <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="registerForm.controls.password.errors && registerForm.controls.password.errors.minlength">
+          Please enter a min <strong>6</strong> symbols
+        </mat-error>
+        <mat-error *ngIf="registerForm.controls.password.errors && registerForm.controls.password.errors.required">
+          Password is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field class="full-width">
+        <input matInput [type]="hideReplay ? 'password' : 'text'" placeholder="Password replay" formControlName="passwordReplay">
+        <button type="button" mat-icon-button matSuffix (click)="hideReplay = !hideReplay" [attr.aria-label]="'hide replay password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hideReplay ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="registerForm.controls.passwordReplay.errors && registerForm.controls.passwordReplay.errors.minlength">
+          Please enter a min <strong>6</strong> symbols
+        </mat-error>
+        <mat-error *ngIf="registerForm.controls.passwordReplay.errors && registerForm.controls.passwordReplay.errors.required">
+          Password replay is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="registerForm.controls.passwordReplay.errors && registerForm.controls.passwordReplay.errors.notEquivalent">
+          Password re-entry <strong>error</strong>
+        </mat-error>
+      </mat-form-field>
+    </p>
+    <div class="form-action">
+      <button *ngIf="!loading" mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid">Register</button>
+      <button *ngIf="!loading" mat-raised-button routerLink='/auth' type="button">Login</button>
+      <app-loader class="loader" *ngIf="loading"></app-loader>
+    </div>
+  </form>
+</div>
