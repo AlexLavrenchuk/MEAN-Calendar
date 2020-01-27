@@ -30,7 +30,6 @@ export class ModalComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscription = this.modalService.getData().subscribe(data => { 
-      console.log(data, "DATA");
       if(data.type === "closed" || data.type === "approval") { 
         this.view = false;
       } else {
@@ -57,15 +56,24 @@ export class ModalComponent implements OnInit, OnDestroy {
 
   private validatorTimeEnd(first: string, second: string) {
     return (group: FormGroup) => {
-      if (group.controls[first].value >= group.controls[second].value) {
-        return group.controls[second].setErrors({lessThenStart: true});
-      } else {
-        return group.controls[second].setErrors(null);
+      if (group.controls[first].value && group.controls[second].value) {
+        if ( group.controls[first].value.split(":")[0] > group.controls[second].value.split(":")[0] ) {
+          return group.controls[second].setErrors({lessThenStart: true});
+        } else if ( group.controls[first].value.split(":")[0] === group.controls[second].value.split(":")[0] && group.controls[first].value.split(":")[1] >= group.controls[second].value.split(":")[1] ) {
+          return group.controls[second].setErrors({lessThenStart: true});
+        } else if ( group.controls[first].value.split(":")[0] < 8 ) {
+          return group.controls[first].setErrors({ startedBefore: true })
+        } else if ( group.controls[second].value.split(":")[0] > 17) {
+          return group.controls[second].setErrors({endAfter: true})
+        } else if ( group.controls[second].value.split(":")[0] == 17 && group.controls[second].value.split(":")[1] > 0 ) {
+          return group.controls[second].setErrors({endAfter: true})
+        } else {
+          return group.controls[second].setErrors(null);
+        }
       }
     }
   }
   
-
   private addNewEvent() {
     if (this.addFormEvent.invalid) {
       return;
@@ -96,7 +104,6 @@ export class ModalComponent implements OnInit, OnDestroy {
     this.cleaningInputForm();
   }
 
-
   private cleaningInputForm() {
     this.addFormEvent.reset();
     this.addFormEvent.controls.title.setErrors(null);
@@ -109,11 +116,13 @@ export class ModalComponent implements OnInit, OnDestroy {
     this.modalService.closed();
   }
 
+  private saveJson() {
+    this.modalService.saveJson(this.exportJson);
+    this.modalService.closed();
+  }
+
   public ngOnDestroy() {
     this.subscription.unsubscribe();
-  }
-  private saveJson() {
-    this.modalService.saveJson(this.exportJson)
   }
 
 }

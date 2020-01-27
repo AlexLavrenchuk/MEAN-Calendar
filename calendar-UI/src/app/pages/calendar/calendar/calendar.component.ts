@@ -4,6 +4,8 @@ import { AlertService } from 'src/app/_shared/services/alert.service';
 import { EventsService } from 'src/app/_shared/services/events.service';
 import { ModalService } from 'src/app/_shared/services/modal.service';
 
+import FileSaver from 'file-saver';
+
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
@@ -54,8 +56,7 @@ export class CalendarComponent implements OnInit {
       (response: any) => { 
         this.events = response;
         this.eventsContainer.nativeElement.innerHTML = "";
-          
-        console.log(response)
+
         response.forEach((objEvent, j, arrEvents) => {
           
           for (let i=0; i < arrEvents.length; i++) {
@@ -65,21 +66,16 @@ export class CalendarComponent implements OnInit {
               && ((objEvent.start + objEvent.duration) < (arrEvents[i].start + arrEvents[i].duration))
             
             if (log) {
-              console.log(i, j);
               objEvent.neighbors = [i];
               arrEvents[i].neighbors = [j];
-              console.log(objEvent, arrEvents[i])
             }
           }
 
-          
         });
 
         response.forEach((element, i) => {
           this.createEvent(element, i);
         });
-
-
         this.loader = false;
       },
       error => {
@@ -148,19 +144,20 @@ export class CalendarComponent implements OnInit {
   private exportJson() {
     
     const exportJson = this.events.map((objEvent) => {
-      return {start: objEvent.start, duration: objEvent.duration,title: objEvent.title}
+      return { start: objEvent.start, duration: objEvent.duration, title: objEvent.title }
     })
     exportJson.sort((prev, next) => {
       return prev.start - next.start;
     })
-    this.modalService.exportJson(JSON.stringify(exportJson,null,1));
+    
+    this.modalService.exportJson(JSON.stringify(exportJson, null, 1));
     this.modalService.getData().pipe(first()).subscribe(data => {
       if (data.type === "saveJson") {
-        console.log(data.exportJson, "SAVE");
-        // this.save(data.objEvent);
+        const description = " \/\/ 'start' & 'duration' are measured in minutes\r\n\ \/\/ 'start' 0 is 8:00a\r\n\ ";
+        let blob = new Blob([description, data.exportJson], { type: "text/plain;charset=utf-8" });
+        FileSaver.saveAs(blob, "export_Json.txt");
       };
-    });
+    })
   }
-
   
 }

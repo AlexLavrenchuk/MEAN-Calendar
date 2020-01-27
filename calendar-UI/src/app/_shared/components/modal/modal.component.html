@@ -16,18 +16,24 @@
         </p>
         <p class=time-add>
           <mat-form-field class="time-input">
-            <input matInput type="time" placeholder="start" formControlName="start">
+            <input matInput type="time" placeholder="star (8:00)" formControlName="start">
             <mat-error *ngIf="addFormEvent.controls.start.errors && addFormEvent.controls.start.errors.required">
               Start time is <strong>required</strong>
             </mat-error>
+            <mat-error *ngIf="addFormEvent.controls.start.errors && addFormEvent.controls.start.errors.startedBefore">
+              Started after <strong>08:00</strong>
+            </mat-error>
           </mat-form-field>
           <mat-form-field class="time-input">
-            <input matInput type="time" placeholder="end" formControlName="end">
+            <input matInput type="time" placeholder="end (17:00)" formControlName="end">
             <mat-error *ngIf="addFormEvent.controls.end.errors && addFormEvent.controls.end.errors.required">
               End time is <strong>required</strong>
             </mat-error>
             <mat-error *ngIf="addFormEvent.controls.end.errors && addFormEvent.controls.end.errors.lessThenStart">
-              Less than a <strong>start</strong> or <strong>equals start</strong>
+              End less than a <strong>start</strong> or <strong>equals start</strong>
+            </mat-error>
+            <mat-error *ngIf="addFormEvent.controls.end.errors && addFormEvent.controls.end.errors.endAfter">
+              End until <strong>17:00</strong>
             </mat-error>
           </mat-form-field>
         </p>
